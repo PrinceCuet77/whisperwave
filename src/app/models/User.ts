@@ -14,6 +14,8 @@ export interface User extends Document {
   refreshToken: string;
   messages: string[];
   deleteMessages: string[];
+  resetPasswordToken?: string | undefined;
+  resetPasswordExpire?: Date | undefined;
 }
 
 const userSchema: Schema<User> = new Schema(
@@ -88,6 +90,14 @@ const userSchema: Schema<User> = new Schema(
         default: [],
       },
     ],
+    resetPasswordToken: {
+      type: String,
+      default: undefined,
+    },
+    resetPasswordExpire: {
+      type: Date,
+      default: undefined,
+    },
   },
   {
     timestamps: true,
